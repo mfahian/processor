@@ -1,0 +1,34 @@
+server:
+  port: 8087
+spring:
+  rabbitmq:
+    host: localhost
+    password: admin
+    username: admin
+    port: 5672
+
+rabbitmq:
+  store-product:
+    exchange: store-product.dx
+    queue: store-product.q
+    deadLetterQueue: store-product.dlq
+
+feign:
+  client:
+    config:
+      ModelConnector:
+        loggerLevel: full
+      CatalogConnector:
+        loggerLevel: full
+
+connectors:
+  model:
+    url: http://localhost:8086
+  catalog:
+    url: http://localhost:8085
+
+logging:
+  level:
+    com:
+      malpro:
+        processor: debug

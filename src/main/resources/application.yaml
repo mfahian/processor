@@ -1,0 +1,21 @@
+spring:
+  rabbitmq:
+    host:
+    password:
+    username:
+    port:
+    listener:
+      simple:
+        default-requeue-rejected: false
+
+rabbitmq:
+  store-product:
+    exchange:
+    queue:
+    deadLetterQueue:
+
+connectors:
+  model:
+    url:
+  catalog:
+    url:
