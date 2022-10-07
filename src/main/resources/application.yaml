@@ -1,0 +1,15 @@
+spring:
+  rabbitmq:
+    host:
+    password:
+    username:
+    port:
+
+configuartion:
+  store-product-queue:
+
+connectors:
+  model:
+    url:
+  catalog:
+    url:

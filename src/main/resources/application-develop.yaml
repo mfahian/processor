@@ -1,0 +1,20 @@
+server:
+  port: 8087
+spring:
+  rabbitmq:
+    host: localhost
+    password: admin
+    username: admin
+    port: 5672
+configuartion:
+  store-product-queue: store-product
+
+connectors:
+  model:
+    url: http://localhost:8086/
+  catalog:
+    url: http://localhost:8085/
+
+logging:
+  level:
+    com.malpro.processor: debug
