@@ -11,9 +11,9 @@ configuartion:
 
 connectors:
   model:
-    url: http://localhost:8086/
+    url: http://localhost:8086
   catalog:
-    url: http://localhost:8085/
+    url: http://localhost:8085
 
 logging:
   level:
