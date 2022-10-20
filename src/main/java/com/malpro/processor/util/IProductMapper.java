@@ -2,19 +2,43 @@ package com.malpro.processor.util;
 
 import com.malpro.processor.dto.catalog.CatalogProductDto;
 import com.malpro.processor.dto.catalog.CatalogProductFeatureDto;
+import com.malpro.processor.dto.catalog.CatalogProductFeaturesDto;
 import com.malpro.processor.dto.model.FeatureCodeDataDto;
 import com.malpro.processor.dto.model.FeaturesCodeDataDto;
 import com.malpro.processor.dto.model.ModelProductDto;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Named;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by fahian on 07.10.22.
  */
 @Mapper(componentModel = "spring")
-public interface ProductMapper {
-    CatalogProductDto mapToCatalogProduct(ModelProductDto modelProductDto, FeaturesCodeDataDto featuresCodeDataDto);
+public interface IProductMapper {
+    @Mapping(source = "featuresCodeDataDto", target = "productFeaturesVersion", qualifiedByName = "featureMapping")
+    CatalogProductDto toCatalogProductDto(ModelProductDto modelProductDto, FeaturesCodeDataDto featuresCodeDataDto);
 
-    default CatalogProductFeatureDto mapConvertedFeatures(FeatureCodeDataDto featureCodeDataDto) {
+    @Named("featureMapping")
+    default List<CatalogProductFeaturesDto> featureMapping(FeaturesCodeDataDto featuresCodeDataDto) {
+        final ArrayList<CatalogProductFeaturesDto> catalogProductFeaturesDtos = new ArrayList<>();
+
+        catalogProductFeaturesDtos.add(toCatalogProductFeaturesDto(featuresCodeDataDto));
+        return catalogProductFeaturesDtos;
+    }
+
+    @Mapping(source = "etimClass", target = "etimGroup")
+    CatalogProductFeaturesDto toCatalogProductFeaturesDto (FeaturesCodeDataDto featuresCodeDataDto);
+
+//    default List<CatalogProductFeatureDto> toCatalogProductFeaturesDtoList (List<FeatureCodeDataDto> featureCodeDataDtoList) {
+//        return featureCodeDataDtoList.stream()
+//                .map(this::mapConvertedFeatures)
+//                .toList();
+//    }
+
+    default CatalogProductFeatureDto toCatalogProductFeatureDto (FeatureCodeDataDto featureCodeDataDto) {
         final var catalogProductFeatureDto = new CatalogProductFeatureDto();
         catalogProductFeatureDto.setEtimFeatureCode(featureCodeDataDto.getEtimFeatureCode());
 

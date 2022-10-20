@@ -6,7 +6,7 @@ import com.malpro.processor.dto.model.FeaturesCodeDataDto;
 import com.malpro.processor.dto.model.FeaturesTextDataDto;
 import com.malpro.processor.repository.CatalogConnectorV1;
 import com.malpro.processor.repository.ModelConnectorV1;
-import com.malpro.processor.util.ProductMapper;
+import com.malpro.processor.util.IProductMapper;
 import io.github.glytching.junit.extension.random.Random;
 import io.github.glytching.junit.extension.random.RandomBeansExtension;
 import org.junit.jupiter.api.DisplayName;
@@ -33,7 +33,7 @@ class MessageReceiverServiceTest {
     private CatalogConnectorV1 catalogConnectorV1;
 
     @Mock
-    private ProductMapper productMapper;
+    private IProductMapper IProductMapper;
 
     @InjectMocks
     private MessageReceiverService messageReceiverService;
@@ -45,12 +45,12 @@ class MessageReceiverServiceTest {
                             @Random CatalogProductDto catalogProductDto) {
 
         when(modelConnectorV1.convertToCode(any(FeaturesTextDataDto.class))).thenReturn(featuresCodeDataDto);
-        when(productMapper.mapToCatalogProduct(processProductMessageDto.getProductData(), featuresCodeDataDto)).thenReturn(catalogProductDto);
+        when(IProductMapper.toCatalogProductDto(processProductMessageDto.getProductData(), featuresCodeDataDto)).thenReturn(catalogProductDto);
 
         messageReceiverService.process(processProductMessageDto);
 
         verify(modelConnectorV1).convertToCode(any(FeaturesTextDataDto.class));
-        verify(productMapper).mapToCatalogProduct(processProductMessageDto.getProductData(), featuresCodeDataDto);
+        verify(IProductMapper).toCatalogProductDto(processProductMessageDto.getProductData(), featuresCodeDataDto);
         verify(catalogConnectorV1).storeProduct(processProductMessageDto.getSupplierUuid(), catalogProductDto);
 
     }

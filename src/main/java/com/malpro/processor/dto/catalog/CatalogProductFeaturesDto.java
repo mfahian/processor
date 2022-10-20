@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by fahian on 03.06.22.
@@ -15,5 +15,5 @@ import java.util.Set;
 public class CatalogProductFeaturesDto {
     private String etimGroup;
     private String referenceFeatureSystem;
-    private Set<CatalogProductFeatureDto> productFeature; //todo change to list, then mapper list->set
+    private List<CatalogProductFeatureDto> productFeatures; //todo change to list, then mapper list->set
 }

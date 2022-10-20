@@ -4,9 +4,15 @@ spring:
     password:
     username:
     port:
+    listener:
+      simple:
+        default-requeue-rejected: false
 
-configuartion:
-  store-product-queue:
+rabbitmq:
+  store-product:
+    exchange:
+    queue:
+    dead-letter-queue:
 
 connectors:
   model:

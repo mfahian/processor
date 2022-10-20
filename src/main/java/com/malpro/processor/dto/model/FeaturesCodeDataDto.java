@@ -11,5 +11,5 @@ import java.util.List;
 @Getter
 @Setter
 public class FeaturesCodeDataDto extends ModelFeaturesDto{
-    private List<FeatureCodeDataDto> featuresMap;
+    private List<FeatureCodeDataDto> productFeatures;
 }

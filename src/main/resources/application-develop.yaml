@@ -6,8 +6,19 @@ spring:
     password: admin
     username: admin
     port: 5672
-configuartion:
-  store-product-queue: store-product
+
+rabbitmq:
+  store-product:
+    exchange: store-product.dx
+    queue: store-product.q
+    dead-letter-queue: store-product.dlq
+
+feign:
+  client:
+    config:
+      CatalogConnector:
+        loggerLevel: full
+
 
 connectors:
   model:
