@@ -16,6 +16,8 @@ rabbitmq:
 feign:
   client:
     config:
+      ModelConnector:
+        loggerLevel: full
       CatalogConnector:
         loggerLevel: full
 

@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Mapper(componentModel = "spring")
 public interface IProductMapper {
-    @Mapping(source = "featuresCodeDataDto", target = "productFeaturesVersion", qualifiedByName = "featureMapping")
+    @Mapping(source = "featuresCodeDataDto", target = "productFeatures", qualifiedByName = "featureMapping")
     CatalogProductDto toCatalogProductDto(ModelProductDto modelProductDto, FeaturesCodeDataDto featuresCodeDataDto);
 
     @Named("featureMapping")
@@ -31,12 +31,6 @@ public interface IProductMapper {
 
     @Mapping(source = "etimClass", target = "etimGroup")
     CatalogProductFeaturesDto toCatalogProductFeaturesDto (FeaturesCodeDataDto featuresCodeDataDto);
-
-//    default List<CatalogProductFeatureDto> toCatalogProductFeaturesDtoList (List<FeatureCodeDataDto> featureCodeDataDtoList) {
-//        return featureCodeDataDtoList.stream()
-//                .map(this::mapConvertedFeatures)
-//                .toList();
-//    }
 
     default CatalogProductFeatureDto toCatalogProductFeatureDto (FeatureCodeDataDto featureCodeDataDto) {
         final var catalogProductFeatureDto = new CatalogProductFeatureDto();

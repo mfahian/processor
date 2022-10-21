@@ -15,5 +15,5 @@ import java.util.List;
 public class CatalogProductFeaturesDto {
     private String etimGroup;
     private String referenceFeatureSystem;
-    private List<CatalogProductFeatureDto> productFeatures; //todo change to list, then mapper list->set
+    private List<CatalogProductFeatureDto> productFeature; //todo change to list, then mapper list->set
 }

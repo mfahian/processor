@@ -17,6 +17,6 @@ public class CatalogProductDto {
     private String globalTradeItemNumber;
     private String manufacturerCode;
     private String manufacturerName;
-    private List<CatalogProductFeaturesDto> productFeaturesVersion;
+    private List<CatalogProductFeaturesDto> productFeatures;
     private CatalogProductOrderDetailsDto productOrderDetails;
 }
