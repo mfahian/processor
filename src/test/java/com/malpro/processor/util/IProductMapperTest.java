@@ -1,6 +1,7 @@
 package com.malpro.processor.util;
 
-import javax.xml.catalog.Catalog;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -36,5 +37,7 @@ class IProductMapperTest {
                        @Random FeaturesCodeDataDto featureCodeDataDto) {
         final CatalogProductDto catalogProductDto = productMapperImpl.toCatalogProductDto(modelProductDto, featureCodeDataDto);
         expect.toMatchSnapshot(catalogProductDto);
+
+        verify(productMapperImpl).featureMapping(featureCodeDataDto);
     }
 }
