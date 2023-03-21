@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<processor>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.malpro.processor.Application",
+            "projectName": "processor",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

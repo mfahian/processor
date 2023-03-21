@@ -1,17 +1,5 @@
 server:
   port: 8087
-spring:
-  rabbitmq:
-    host: localhost
-    password: admin
-    username: admin
-    port: 5672
-
-rabbitmq:
-  store-product:
-    exchange: store-product.dx
-    queue: store-product.q
-    deadLetterQueue: store-product.dlq
 
 feign:
   client:

@@ -1,21 +1,17 @@
 spring:
   rabbitmq:
-    host:
-    password:
-    username:
-    port:
+    host: localhost
+    password: guest
+    username: guest
+    port: 5672
     listener:
       simple:
         default-requeue-rejected: false
-
 rabbitmq:
   store-product:
-    exchange:
-    queue:
-    deadLetterQueue:
-
+    queue: store-product.q
 connectors:
   model:
-    url:
+    url: 
   catalog:
-    url:
+    url: 

@@ -21,7 +21,7 @@ import io.github.glytching.junit.extension.random.RandomBeansExtension;
 /**
  * Created by fahian on 03.07.22.
  */
-@Disabled("Always generating new values, does not use the snap")
+@Disabled
 @ExtendWith({MockitoExtension.class, RandomBeansExtension.class, SnapshotExtension.class})
 class IProductMapperTest {
 
@@ -30,7 +30,7 @@ class IProductMapperTest {
     @InjectMocks
     private IProductMapperImpl productMapperImpl;
 
-    @Test@Disabled("Always generating new values, does not use the snap")
+    @Test
     @DisplayName("Map product test")
     void toCatalogTest(@Random ModelProductDto modelProductDto,
                        @Random FeaturesCodeDataDto featureCodeDataDto) {
