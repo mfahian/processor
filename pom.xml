@@ -150,9 +150,9 @@
                 <configuration>
                     <excludes>
                         <exclude>com/malpro/processor/configuration/*</exclude>
-                        <exclude>com/malpro/processor/dto/**/*</exclude>
+                        <exclude>com/malpro/processor/dto/**/*Dto.*</exclude>
                         <exclude>com/malpro/processor/repository/*</exclude>
-                        <exclude>com/malpro/processor/Application.class</exclude>
+                        <exclude>com/malpro/processor/Application.*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
