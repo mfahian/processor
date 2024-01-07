@@ -15,8 +15,8 @@ import com.malpro.processor.dto.model.ModelProductDto;
 
 import au.com.origin.snapshots.Expect;
 import au.com.origin.snapshots.junit5.SnapshotExtension;
-import io.github.glytching.junit.extension.random.Random;
-import io.github.glytching.junit.extension.random.RandomBeansExtension;
+import com.malpro.processor.random.Random;
+import com.malpro.processor.random.RandomBeansExtension;
 
 /**
  * Created by fahian on 03.07.22.

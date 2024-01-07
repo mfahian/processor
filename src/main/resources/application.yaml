@@ -12,6 +12,6 @@ rabbitmq:
     queue: store-product.q
 connectors:
   model:
-    url: 
+    url: localhost:8110
   catalog:
-    url: 
+    url: localhost:8100

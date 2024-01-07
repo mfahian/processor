@@ -2,7 +2,7 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-Application<processor>",
+            "name": "processor",
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "mainClass": "com.malpro.processor.Application",

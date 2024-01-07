@@ -27,8 +27,8 @@ import com.malpro.processor.repository.CatalogConnectorV1;
 import com.malpro.processor.repository.ModelConnectorV1;
 import com.malpro.processor.util.IProductMapper;
 
-import io.github.glytching.junit.extension.random.Random;
-import io.github.glytching.junit.extension.random.RandomBeansExtension;
+import com.malpro.processor.random.Random;
+import com.malpro.processor.random.RandomBeansExtension;
 
 /**
  * Created by fahian on 07.10.22.
