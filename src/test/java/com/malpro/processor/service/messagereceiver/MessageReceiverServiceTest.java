@@ -9,6 +9,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 import org.junit.jupiter.api.DisplayName;
@@ -19,16 +21,14 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.malpro.processor.dto.catalog.CatalogProductDto;
-import com.malpro.processor.dto.message.ProcessProductMessageDto;
 import com.malpro.processor.dto.model.FeaturesCodeDataDto;
 import com.malpro.processor.dto.model.FeaturesTextDataDto;
 import com.malpro.processor.dto.model.ModelProductDto;
+import com.malpro.processor.random.Random;
+import com.malpro.processor.random.RandomBeansExtension;
 import com.malpro.processor.repository.CatalogConnectorV1;
 import com.malpro.processor.repository.ModelConnectorV1;
 import com.malpro.processor.util.IProductMapper;
-
-import com.malpro.processor.random.Random;
-import com.malpro.processor.random.RandomBeansExtension;
 
 /**
  * Created by fahian on 07.10.22.
@@ -50,28 +50,30 @@ class MessageReceiverServiceTest {
 
     @Test
     @DisplayName("Products are processed test")
-    void productIsProcessedTest(@Random ProcessProductMessageDto processProductMessageDto,
+    void productIsProcessedTest(@Random ModelProductDto product1,
+                            @Random ModelProductDto product2,
                             @Random FeaturesCodeDataDto featuresCodeDataDto,
                             @Random CatalogProductDto catalogProductDto,
                             @Random UUID supplierUUID) {
 
-        
+        List<ModelProductDto> malproProductDtos = List.of(product1, product2);
+
         when(modelConnectorV1.convertToCode(any(FeaturesTextDataDto.class))).thenReturn(featuresCodeDataDto);
         when(IProductMapper.toCatalogProductDto(any(ModelProductDto.class), eq(featuresCodeDataDto))).thenReturn(catalogProductDto);
 
-        messageReceiverService.process(processProductMessageDto, supplierUUID.toString());
+        messageReceiverService.process(malproProductDtos, supplierUUID.toString());
 
-        verify(modelConnectorV1, times(processProductMessageDto.getProductData().size())).convertToCode(any(FeaturesTextDataDto.class));
-        verify(IProductMapper,times(processProductMessageDto.getProductData().size())).toCatalogProductDto(any(ModelProductDto.class), eq(featuresCodeDataDto));
+        verify(modelConnectorV1, times(malproProductDtos.size())).convertToCode(any(FeaturesTextDataDto.class));
+        verify(IProductMapper,times(malproProductDtos.size())).toCatalogProductDto(any(ModelProductDto.class), eq(featuresCodeDataDto));
         verify(catalogConnectorV1).storeProduct(eq(supplierUUID.toString()), anyList());
 
     }
 
     @Test
     @DisplayName("Supplier uuid is null test")
-    void supplierUuidIsNullTest(@Random ProcessProductMessageDto processProductMessageDto) {
+    void supplierUuidIsNullTest() {
 
-        messageReceiverService.process(processProductMessageDto, null);
+        messageReceiverService.process(Collections.emptyList(), null);
 
         verify(modelConnectorV1, never()).convertToCode(any(FeaturesTextDataDto.class));
         verify(IProductMapper, never()).toCatalogProductDto(any(ModelProductDto.class), any(FeaturesCodeDataDto.class));
@@ -80,9 +82,9 @@ class MessageReceiverServiceTest {
 
     @Test
     @DisplayName("Supplier uuid is empty test")
-    void supplierUuidIsEmptyTest(@Random ProcessProductMessageDto processProductMessageDto) {
+    void supplierUuidIsEmptyTest() {
 
-        messageReceiverService.process(processProductMessageDto, " ");
+        messageReceiverService.process(Collections.emptyList(), " ");
 
         verify(modelConnectorV1, never()).convertToCode(any(FeaturesTextDataDto.class));
         verify(IProductMapper, never()).toCatalogProductDto(any(ModelProductDto.class), any(FeaturesCodeDataDto.class));

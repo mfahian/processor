@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fahian on 07.10.22.
@@ -16,8 +17,13 @@ public class ModelProductDto {
     private String shortDescription;
     private String longDescription;
     private String globalTradeItemNumber;
-    private String manufacturerCode;
-    private String manufacturerName;
-    private List<FeaturesTextDataDto> productFeatures;
-    private CatalogProductOrderDetailsDto productOrderDetails;
+    private String unit;
+    private String priceQuantity;
+    // private String manufacturerCode;
+    // private String manufacturerName;
+    private String etimClass;
+    private String referenceFeatureSystem;
+    // private List<FeaturesTextDataDto> productFeatures;
+    private Map<String, String> featuresMap;
+    // private CatalogProductOrderDetailsDto productOrderDetails;
 }
