@@ -65,7 +65,7 @@ class MessageReceiverServiceTest {
 
         verify(modelConnectorV1, times(malproProductDtos.size())).convertToCode(any(FeaturesTextDataDto.class));
         verify(IProductMapper,times(malproProductDtos.size())).toCatalogProductDto(any(ModelProductDto.class), eq(featuresCodeDataDto));
-        verify(catalogConnectorV1).storeProduct(eq(supplierUUID.toString()), anyList());
+        verify(catalogConnectorV1).storeProducts(eq(supplierUUID.toString()), anyList());
 
     }
 
@@ -77,7 +77,7 @@ class MessageReceiverServiceTest {
 
         verify(modelConnectorV1, never()).convertToCode(any(FeaturesTextDataDto.class));
         verify(IProductMapper, never()).toCatalogProductDto(any(ModelProductDto.class), any(FeaturesCodeDataDto.class));
-        verify(catalogConnectorV1, never()).storeProduct(anyString(), anyList());
+        verify(catalogConnectorV1, never()).storeProducts(anyString(), anyList());
     }
 
     @Test
@@ -88,6 +88,6 @@ class MessageReceiverServiceTest {
 
         verify(modelConnectorV1, never()).convertToCode(any(FeaturesTextDataDto.class));
         verify(IProductMapper, never()).toCatalogProductDto(any(ModelProductDto.class), any(FeaturesCodeDataDto.class));
-        verify(catalogConnectorV1, never()).storeProduct(anyString(), anyList());
+        verify(catalogConnectorV1, never()).storeProducts(anyString(), anyList());
     }
 }

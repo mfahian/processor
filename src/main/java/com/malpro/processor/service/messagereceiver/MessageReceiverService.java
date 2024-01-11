@@ -41,7 +41,7 @@ public class MessageReceiverService {
                 catalogProductDtoList.add(catalogProductDto);
             }
 
-            catalogConnectorV1.storeProduct(supplierUUID, catalogProductDtoList);
+            catalogConnectorV1.storeProducts(supplierUUID, catalogProductDtoList);
         }
     }
 

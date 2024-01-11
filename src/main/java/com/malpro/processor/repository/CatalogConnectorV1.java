@@ -17,6 +17,6 @@ import com.malpro.processor.dto.catalog.CatalogProductDto;
         url = "${connectors.catalog.url}",
         path = "/api/v1")
 public interface CatalogConnectorV1 {
-    @PostMapping(value="/supplier/{supplierUuid}/product")
-    String storeProduct(@PathVariable String supplierUuid, @RequestBody List<CatalogProductDto> catalogProductDto);
+    @PostMapping(value="/supplier/{supplierUuid}/products/list")
+    String storeProducts(@PathVariable String supplierUuid, @RequestBody List<CatalogProductDto> catalogProductDto);
 }
