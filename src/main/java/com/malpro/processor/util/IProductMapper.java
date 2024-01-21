@@ -19,6 +19,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface IProductMapper {
     @Mapping(source = "featuresCodeDataDto", target = "productFeatures", qualifiedByName = "featureMapping")
+    @Mapping(source = "modelProductDto.unit", target = "productOrderDetails.orderUnit")
     CatalogProductDto toCatalogProductDto(ModelProductDto modelProductDto, FeaturesCodeDataDto featuresCodeDataDto);
 
     @Named("featureMapping")

@@ -19,11 +19,9 @@ public class ModelProductDto {
     private String globalTradeItemNumber;
     private String unit;
     private String priceQuantity;
-    // private String manufacturerCode;
-    // private String manufacturerName;
+    private String manufacturerCode;
+    private String manufacturerName;
     private String etimClass;
     private String referenceFeatureSystem;
-    // private List<FeaturesTextDataDto> productFeatures;
     private Map<String, String> featuresMap;
-    // private CatalogProductOrderDetailsDto productOrderDetails;
 }

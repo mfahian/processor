@@ -48,9 +48,6 @@ public class MessageReceiverService {
     private CatalogProductDto convertProduct(ModelProductDto modelProductDto) {
         // todo support for multiple product features
         log.debug("converting: {}", modelProductDto.getCode());
-        // final FeaturesTextDataDto productData = modelProductDto.getProductFeatures().stream()
-        //         .findFirst()
-        //         .orElse(new FeaturesTextDataDto());
 
         final var productData = new FeaturesTextDataDto();
         productData.setEtimClass(modelProductDto.getEtimClass());
@@ -59,6 +56,7 @@ public class MessageReceiverService {
 
         final var featuresCodeDataDto = modelConnectorV1.convertToCode(productData);
         log.debug("class:" + featuresCodeDataDto.getEtimClass() + ", reference system:" + featuresCodeDataDto.getReferenceFeatureSystem());
+
         return iProductMapper.toCatalogProductDto(modelProductDto, featuresCodeDataDto);
     }
 }
