@@ -1,11 +1,9 @@
 package com.malpro.processor.dto.model;
 
-import com.malpro.processor.dto.catalog.CatalogProductOrderDetailsDto;
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by fahian on 07.10.22.
