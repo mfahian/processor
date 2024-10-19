@@ -43,7 +43,7 @@ class MessageReceiverServiceTest {
     private CatalogConnectorV1 catalogConnectorV1;
 
     @Mock
-    private IProductMapper IProductMapper;
+    private IProductMapper iProductMapper;
 
     @InjectMocks
     private MessageReceiverService messageReceiverService;
@@ -59,12 +59,12 @@ class MessageReceiverServiceTest {
         List<ModelProductDto> malproProductDtos = List.of(product1, product2);
 
         when(modelConnectorV1.convertToCode(any(FeaturesTextDataDto.class))).thenReturn(featuresCodeDataDto);
-        when(IProductMapper.toCatalogProductDto(any(ModelProductDto.class), eq(featuresCodeDataDto))).thenReturn(catalogProductDto);
+        when(iProductMapper.toCatalogProductDto(any(ModelProductDto.class), eq(featuresCodeDataDto))).thenReturn(catalogProductDto);
 
         messageReceiverService.process(malproProductDtos, supplierUUID.toString());
 
         verify(modelConnectorV1, times(malproProductDtos.size())).convertToCode(any(FeaturesTextDataDto.class));
-        verify(IProductMapper,times(malproProductDtos.size())).toCatalogProductDto(any(ModelProductDto.class), eq(featuresCodeDataDto));
+        verify(iProductMapper,times(malproProductDtos.size())).toCatalogProductDto(any(ModelProductDto.class), eq(featuresCodeDataDto));
         verify(catalogConnectorV1).storeProducts(eq(supplierUUID.toString()), anyList());
 
     }
@@ -76,7 +76,7 @@ class MessageReceiverServiceTest {
         messageReceiverService.process(Collections.emptyList(), null);
 
         verify(modelConnectorV1, never()).convertToCode(any(FeaturesTextDataDto.class));
-        verify(IProductMapper, never()).toCatalogProductDto(any(ModelProductDto.class), any(FeaturesCodeDataDto.class));
+        verify(iProductMapper, never()).toCatalogProductDto(any(ModelProductDto.class), any(FeaturesCodeDataDto.class));
         verify(catalogConnectorV1, never()).storeProducts(anyString(), anyList());
     }
 
@@ -87,7 +87,7 @@ class MessageReceiverServiceTest {
         messageReceiverService.process(Collections.emptyList(), " ");
 
         verify(modelConnectorV1, never()).convertToCode(any(FeaturesTextDataDto.class));
-        verify(IProductMapper, never()).toCatalogProductDto(any(ModelProductDto.class), any(FeaturesCodeDataDto.class));
+        verify(iProductMapper, never()).toCatalogProductDto(any(ModelProductDto.class), any(FeaturesCodeDataDto.class));
         verify(catalogConnectorV1, never()).storeProducts(anyString(), anyList());
     }
 }
